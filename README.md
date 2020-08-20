@@ -22,7 +22,3 @@
 ### Step-page-'Покупатели'
 
 - [x] Last tasks in test-description
-
-### Final
-
-- [ ] Optimizations
