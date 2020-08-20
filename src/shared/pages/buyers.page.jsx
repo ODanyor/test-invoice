@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useStateValue } from 'shared/hooks/useStateValue'
 import { useHandleValue } from 'shared/hooks/useHandleValue'
-import { Table } from 'shared/components'
+import { Table } from 'shared/utils/styles'
 
 function Buyer({ buyer }) {
   return (
@@ -33,7 +33,9 @@ function Buyers({ buyers, dispatch, sortBy, reverse, display }) {
       ? slicedBuyers.sort(
           (a, b) => b.totalPrice / b.purchases - a.totalPrice / a.purchases
         )
-      : slicedBuyers.sort((a, b) => b[sortBy] - a[sortBy])
+      : sortBy === 'purchases' || sortBy === 'purchases'
+      ? slicedBuyers.sort((a, b) => b[sortBy] - a[sortBy])
+      : slicedBuyers
 
   if (reverse) {
     slicedBuyers.reverse()
@@ -109,7 +111,7 @@ function TableBody({ buyers, sortBy, reverse, display }) {
 function BuyersTable() {
   const [{ buyers }] = useStateValue()
 
-  const sortBy = useHandleValue('name')
+  const sortBy = useHandleValue('')
   const reverse = useHandleValue(false)
   const display = useHandleValue(5)
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useStateValue } from 'shared/hooks/useStateValue'
-import { Table } from 'shared/components'
+import { Table } from 'shared/utils/styles'
 
 function Buyer({ item }) {
   return (

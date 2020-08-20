@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useHandleValue } from 'shared/hooks/useHandleValue'
 import { useStateValue } from 'shared/hooks/useStateValue'
 import { storeUsername } from 'shared/utils/username'
+import { Form } from 'shared/utils/styles'
 
 import { is } from 'shared/utils/validation'
 import axios from 'axios'
 import url from 'shared/constants/urls'
 
 function LoginForm() {
+  const inputRef = useRef()
   const history = useHistory()
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue()
@@ -33,12 +35,19 @@ function LoginForm() {
     }
   }
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [inputRef])
+
   return (
-    <form onSubmit={submitHandle}>
+    <Form onSubmit={submitHandle}>
       <input
         type='text'
         name='username'
         placeholder='Имя'
+        ref={inputRef}
         {...username.controls}
       />
       <input
@@ -48,7 +57,7 @@ function LoginForm() {
         {...password.controls}
       />
       <button>Login</button>
-    </form>
+    </Form>
   )
 }
 

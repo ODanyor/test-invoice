@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useHandleValue } from 'shared/hooks/useHandleValue'
 import { useStateValue } from 'shared/hooks/useStateValue'
-import { Table } from 'shared/components'
+import { Table, Form } from 'shared/utils/styles'
 
 function Terminal({ terminal, dispatch }) {
   const removeTerminal = () =>
@@ -41,6 +41,7 @@ function TerminalsTable(props) {
 }
 
 function TerminalForm({ dispatch }) {
+  const inputRef = useRef()
   const name = useHandleValue('')
   const description = useHandleValue('')
   const id = Math.floor(Math.random() * 10000000)
@@ -59,15 +60,17 @@ function TerminalForm({ dispatch }) {
       })
       name.setValue('')
       description.setValue('')
+      inputRef.current.focus()
     }
   }
 
   return (
-    <form onSubmit={submitHandle}>
+    <Form onSubmit={submitHandle}>
       <input
         type='text'
         name='name'
         placeholder='Название'
+        ref={inputRef}
         {...name.controls}
       />
       <input
@@ -77,7 +80,7 @@ function TerminalForm({ dispatch }) {
         {...description.controls}
       />
       <button>Добавить</button>
-    </form>
+    </Form>
   )
 }
 
