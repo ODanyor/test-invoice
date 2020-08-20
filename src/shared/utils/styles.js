@@ -7,6 +7,7 @@ export const color = {
   green: '#BFD7B5',
   opal: '#A3C4BC',
   violet: '#413C58',
+  blue: '#09f',
 }
 
 export const font = {
@@ -26,7 +27,8 @@ export const Table = styled.table`
 
     button {
       cursor: pointer;
-      background-color: ${color.spring};
+      border: none;
+      background: none;
       padding: 0.5rem 0;
       &:hover {
         filter: brightness(1.1);
@@ -42,18 +44,11 @@ export const Table = styled.table`
   }
 
   td {
+    padding: 10px 6px;
     button {
       cursor: pointer;
       padding: 0.5rem;
-      color: #fff;
-      background-color: red;
-      border: none;
-      &:hover {
-        filter: brightness(2);
-      }
-      &:active {
-        filter: brightness(0.9);
-      }
+      color: red;
     }
   }
 `
@@ -61,21 +56,28 @@ export const Table = styled.table`
 export const Form = styled.form`
   margin: 1rem 0;
   width: 100%;
-  border: 1px solid ${color.violet};
   display: flex;
-  box-shadow: 1px 2px 5px ${color.violet};
+  height: 50px;
 
   input {
     width: 100%;
     border: none;
-    padding: 5px;
+    padding: 5px 10px;
+    border: 1px solid ${color.blue};
+    ${font.size(19)};
+    &:hover {
+      border-color: #0099ff;
+    }
   }
 
   button {
     cursor: pointer;
-    background-color: ${color.green};
     border: none;
     padding: 5px;
+    background-color: ${color.blue};
+    color: #fff;
+    ${font.size(17)};
+    ${font.weight(600)};
 
     &:hover {
       filter: brightness(1.1);

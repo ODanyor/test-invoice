@@ -21,7 +21,7 @@ function LoginForm() {
   const submitHandle = (event) => {
     event.preventDefault()
 
-    if (is.password(password.controls.value)) {
+    if (is.PASSWORD(password.controls.value)) {
       axios
         .get(url.githubCredentials(username.controls.value))
         .then((data) => {
@@ -29,9 +29,11 @@ function LoginForm() {
           dispatch({ type: 'SET_USER', payload: data.data })
           history.push('/')
         })
-        .catch(() => console.log('ERROR: user is not found'))
+        .catch(() => alert('Ошибка: Пользователь не найден'))
     } else {
-      console.log('ERROR: password is not valid')
+      alert(
+        'Ошибка: Пароль должен быть не менее 8 символов и должен содержать минимум 1 номер и 1 латинскую букву'
+      )
     }
   }
 
@@ -48,12 +50,14 @@ function LoginForm() {
         name='username'
         placeholder='Имя'
         ref={inputRef}
+        required={true}
         {...username.controls}
       />
       <input
         type='password'
         name='password'
         placeholder='Пароль'
+        required={true}
         {...password.controls}
       />
       <button>Login</button>
@@ -64,7 +68,7 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <div>
-      <h1>Login page</h1>
+      <h1>Страница авторизации</h1>
       <LoginForm />
     </div>
   )

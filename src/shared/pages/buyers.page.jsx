@@ -11,9 +11,11 @@ function Buyer({ buyer }) {
         <Link to={`/buyers/${buyer.id}`}>{buyer.id}</Link>
       </td>
       <td>{buyer.name}</td>
-      <td>{(buyer.totalPrice / buyer.purchases).toFixed(2)}</td>
-      <td>{buyer.purchases}</td>
-      <td>{buyer.totalPrice}</td>
+      <td style={{ textAlign: 'right' }}>
+        ₽{(buyer.totalPrice / buyer.purchases).toFixed(2)}
+      </td>
+      <td style={{ textAlign: 'center' }}>{buyer.purchases}</td>
+      <td style={{ textAlign: 'right' }}>₽{buyer.totalPrice}</td>
     </tr>
   )
 }
@@ -33,7 +35,7 @@ function Buyers({ buyers, dispatch, sortBy, reverse, display }) {
       ? slicedBuyers.sort(
           (a, b) => b.totalPrice / b.purchases - a.totalPrice / a.purchases
         )
-      : sortBy === 'purchases' || sortBy === 'purchases'
+      : sortBy === 'purchases' || sortBy === 'totalPrice'
       ? slicedBuyers.sort((a, b) => b[sortBy] - a[sortBy])
       : slicedBuyers
 

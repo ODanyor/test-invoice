@@ -11,7 +11,7 @@ function Terminal({ terminal, dispatch }) {
     <tr>
       <td>{terminal.name}</td>
       <td>{terminal.description}</td>
-      <td>
+      <td style={{ textAlign: 'right' }}>
         <button onClick={removeTerminal}>&#10005;</button>
       </td>
     </tr>
@@ -61,6 +61,8 @@ function TerminalForm({ dispatch }) {
       name.setValue('')
       description.setValue('')
       inputRef.current.focus()
+    } else {
+      alert('Пожалуйста, заполните поле названия')
     }
   }
 
